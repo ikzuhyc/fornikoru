@@ -15,24 +15,26 @@
       overflow-x: hidden;
       position: relative;
     }
-    h1, p, .audio-control, .heart {
-      position: relative;
-      z-index: 10; /* Text and buttons stay on top */
-    }
     h1 {
       color: #e63946;
       font-size: 3rem;
       margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
     }
     p {
       font-size: 1.2rem;
       line-height: 1.8;
       margin: 10px 0;
+      position: relative;
+      z-index: 2;
     }
     .heart {
       font-size: 5rem;
       animation: heartbeat 1.5s infinite;
       color: #ff69b4;
+      position: relative;
+      z-index: 2;
     }
     .audio-control {
       margin: 15px 0;
@@ -43,6 +45,8 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      position: relative;
+      z-index: 2;
     }
     @keyframes heartbeat {
       0%, 100% {
@@ -66,17 +70,24 @@
       top: 0;
       width: 50%;
       height: 100%;
-      background: linear-gradient(to right, #8b0000, #b22222);
+      background: repeating-linear-gradient(
+        90deg,
+        #8b0000,
+        #8b0000 10px,
+        #b22222 10px,
+        #b22222 20px
+      );
+      box-shadow: 5px 0 10px rgba(0, 0, 0, 0.5);
       z-index: 9999;
-      animation: openCurtain 3s ease forwards;
+      animation: openCurtain 3s ease forwards, fadeOut 1s 3s forwards;
     }
     .curtain-left {
       left: 0;
-      animation-delay: 0.5s;
+      animation-delay: 0s;
     }
     .curtain-right {
       right: 0;
-      animation-delay: 0.5s;
+      animation-delay: 0s;
     }
     @keyframes openCurtain {
       from {
@@ -86,33 +97,26 @@
         transform: translateX(-100%);
       }
     }
-    /* Flower animation styles */
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    /* Flower styles */
     .flower-container {
       position: absolute;
-      z-index: 1; /* Flowers stay behind text */
-      pointer-events: none;
-      animation: float 6s ease-in-out infinite;
-    }
-    .flower {
       font-size: 2rem;
-      animation: spin 4s linear infinite;
-    }
-    .rose {
-      font-size: 2.5rem;
-      color: #c41e3a;
-      animation: pulse 2s ease-in-out infinite;
+      animation: float 6s infinite ease-in-out;
+      z-index: 1;
     }
     @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(10deg); }
-    }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(10deg);
+      }
     }
   </style>
 </head>
@@ -120,11 +124,6 @@
   <!-- Curtain animation -->
   <div class="curtain curtain-left"></div>
   <div class="curtain curtain-right"></div>
-
-  <!-- Floating flowers -->
-  <div class="flower-container" style="left: 10%; top: 20%">🌸</div>
-  <div class="flower-container" style="left: 90%; top: 30%">🌹</div>
-  <div class="flower-container" style="left: 30%; top: 80%">🌼</div>
 
   <audio id="backgroundMusic" loop>
     <source src="https://raw.githubusercontent.com/ikzuhyc/fornikoru/refs/heads/main/ILYTM%20(mp3cut.net)_2.mp3" type="audio/mpeg">
@@ -145,7 +144,7 @@
   <p>And finally, the ballpen. Sana yan gamitin mo hanggang sa grumaduate ka, whatever reason na mawala man ako Atleast magsisilbing reminder ung pen, na lagi mo ko kasama sa lahat ng bagay and sa lahat ng thoughts mo. I love you so much. Hindi ako nagpapaalam ha. huuhuuhuh.</p>
   <p>That's all lang muna, and you can play Valorant anytime you want na. I'll find my own way to be happy on other games or other things. mwaaaH!!! 😘😘😘</p>
   <div class="heart">❤️</div>
-  
+
   <script>
     const audio = document.getElementById('backgroundMusic');
     const audioButton = document.getElementById('audioButton');
