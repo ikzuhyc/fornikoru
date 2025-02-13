@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Message</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #ffe4e1, #ffb6c1);
+      color: #6a0572;
+      text-align: center;
+      padding: 20px;
+      animation: fadeIn 2s ease-in-out;
+      overflow-x: hidden;
+      position: relative;
+    }
+    h1 {
+      color: #e63946;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin: 10px 0;
+    }
+    .heart {
+      font-size: 5rem;
+      animation: heartbeat 1.5s infinite;
+      color: #ff69b4;
+    }
+    .audio-control {
+      margin: 15px 0;
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: white;
+      background-color: #e63946;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.3);
+      }
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    /* Flower animation styles */
+    .flower-container {
+      position: absolute;
+      pointer-events: none;
+      animation: float 6s ease-in-out infinite;
+    }
+    .flower {
+      font-size: 2rem;
+      animation: spin 4s linear infinite;
+    }
+    .rose {
+      font-size: 2.5rem;
+      color: #c41e3a;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating flowers -->
+  <div class="flower-container" style="left: 10%; top: 20%">🌸</div>
+  <div class="flower-container" style="left: 90%; top: 30%">🌹</div>
+  <div class="flower-container" style="left: 30%; top: 80%">🌼</div>
+
+  <audio id="backgroundMusic" loop>
+    <source src="https://raw.githubusercontent.com/ikzuhyc/fornikoru/refs/heads/main/ILYTM%20(mp3cut.net)_2.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <h1>Hi Jasmine Nicole P. Gonzales!</h1>
+  <button class="audio-control" id="audioButton">Play Music</button>
+  
+  <p>I don't know where to start. Also, I don't know what theme song should I put here, so yuh!!</p>
+  <p>Happy Valentines! I don't know rin kung when ko to mabibigay or whatever, btw. When I'm doing this, we're not in good terms so...</p>
+  <p>So first of all, I wanna thank you for your unquestioning, unqualified, unreserved, unlimited, unrestricted, wholesale, wholehearted, complete, total, entire, full, outright, absolute, downright, unconditional love.</p> 
+  <p>You are the bravest, most courageous, plucky, fearless, valiant, valorous, intrepid, heroic, lionhearted, bold, daring, adventurous, and undaunted woman I've ever met.</p>
+  <p>I love you so much!</p>
+  <p>I'm sorry for all the mistakes, heartaches, and immaturity I've done to you. Those things won't break you 'cause you are you 😊. If you think you're already broken, no. Ang broken is yung wala ng makain, wala ng matirhan, wala ng mainom. Kaya whenever someone, some man hurts your feelings, don't you dare give up! Kasi hindi sila/kami kawalan. There's only one man na talagang you won't afford to lose. His name is Jesus, and I know you know what's next.</p>
+  <p>"Love, you are pretty."</p>
+  <p>That line is not a line without "n" in line. I'm badly serious when I compliment you, gurl! And I wanted to remind you na "Love, you know I love how you look, but it’s not always about being pretty or good-looking. What matters most to me is your heart, your mind, and the way you make me feel. Those things are way more important to me than appearance."</p>
+  <p>I’ve been reflecting a lot, and I want to be honest with you. I made a mistake and hurt you in a way you didn’t deserve (I'm referring sa mga ginawa ko). I let myself get distracted by something that shouldn’t have mattered, and I deeply regret it. You’ve always meant so much to me, and I’m sorry for losing sight of what truly matters. You didn’t deserve that, and I take full responsibility for my actions.</p>
+  <p>And finally, the ballpen. Sana yan gamitin mo hanggang sa grumaduate ka, whatever reason na mawala man ako Atleast magsisilbing reminder ung pen, na lagi mo ko kasama sa lahat ng bagay and sa lahat ng thoughts mo. I love you so much. Hindi ako nagpapaalam ha. huuhuuhuh.</p>
+  <p>That's all lang muna, and you can play Valorant anytime you want na. I'll find my own way to be happy on other games or other things. mwaaaH!!! 😘😘😘</p>
+  <div class="heart">❤️</div>
+
+  <script>
+    const audio = document.getElementById('backgroundMusic');
+    const audioButton = document.getElementById('audioButton');
+    audioButton.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        audioButton.textContent = 'Pause Music';
+      } else {
+        audio.pause();
+        audioButton.textContent = 'Play Music';
+      }
+    });
+
+    // Function to create floating flowers
+    function createFlower(emoji, count) {
+      for (let i = 0; i < count; i++) {
+        const flower = document.createElement('div');
+        flower.className = `flower-container ${emoji === '🌹' ? 'rose' : 'flower'}`;
+        flower.style.left = Math.random() * 100 + '%';
+        flower.style.top = Math.random() * 100 + '%';
+        flower.style.animationDelay = Math.random() * 2 + 's';
+        flower.innerHTML = emoji;
+        document.body.appendChild(flower);
+      }
+    }
+
+    // Generate floating flowers
+    window.addEventListener('DOMContentLoaded', () => {
+      createFlower('🌸', 5);
+      createFlower('🌹', 3);
+      createFlower('🌼', 4);
+      createFlower('💮', 2);
+    });
+  </script>
+</body>
+</html>
