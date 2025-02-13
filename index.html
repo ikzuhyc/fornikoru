@@ -15,26 +15,24 @@
       overflow-x: hidden;
       position: relative;
     }
+    h1, p, .audio-control, .heart {
+      position: relative;
+      z-index: 10; /* Text and buttons stay on top */
+    }
     h1 {
       color: #e63946;
       font-size: 3rem;
       margin-bottom: 10px;
-      position: relative;
-      z-index: 2;
     }
     p {
       font-size: 1.2rem;
       line-height: 1.8;
       margin: 10px 0;
-      position: relative;
-      z-index: 2;
     }
     .heart {
       font-size: 5rem;
       animation: heartbeat 1.5s infinite;
       color: #ff69b4;
-      position: relative;
-      z-index: 2;
     }
     .audio-control {
       margin: 15px 0;
@@ -62,12 +60,38 @@
         opacity: 1;
       }
     }
+    /* Curtain styles */
+    .curtain {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(to right, #8b0000, #b22222);
+      z-index: 9999;
+      animation: openCurtain 3s ease forwards;
+    }
+    .curtain-left {
+      left: 0;
+      animation-delay: 0.5s;
+    }
+    .curtain-right {
+      right: 0;
+      animation-delay: 0.5s;
+    }
+    @keyframes openCurtain {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
     /* Flower animation styles */
     .flower-container {
       position: absolute;
+      z-index: 1; /* Flowers stay behind text */
       pointer-events: none;
       animation: float 6s ease-in-out infinite;
-      z-index: 1;
     }
     .flower {
       font-size: 2rem;
@@ -93,6 +117,10 @@
   </style>
 </head>
 <body>
+  <!-- Curtain animation -->
+  <div class="curtain curtain-left"></div>
+  <div class="curtain curtain-right"></div>
+
   <!-- Floating flowers -->
   <div class="flower-container" style="left: 10%; top: 20%">🌸</div>
   <div class="flower-container" style="left: 90%; top: 30%">🌹</div>
@@ -117,7 +145,7 @@
   <p>And finally, the ballpen. Sana yan gamitin mo hanggang sa grumaduate ka, whatever reason na mawala man ako Atleast magsisilbing reminder ung pen, na lagi mo ko kasama sa lahat ng bagay and sa lahat ng thoughts mo. I love you so much. Hindi ako nagpapaalam ha. huuhuuhuh.</p>
   <p>That's all lang muna, and you can play Valorant anytime you want na. I'll find my own way to be happy on other games or other things. mwaaaH!!! 😘😘😘</p>
   <div class="heart">❤️</div>
-
+  
   <script>
     const audio = document.getElementById('backgroundMusic');
     const audioButton = document.getElementById('audioButton');
