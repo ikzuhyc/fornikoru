@@ -70,37 +70,24 @@
       top: 0;
       width: 50%;
       height: 100%;
-      background: repeating-linear-gradient(
-        90deg,
-        #8b0000,
-        #8b0000 10px,
-        #b22222 10px,
-        #b22222 20px
-      );
-      box-shadow: 5px 0 10px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(to right, #8b0000, #b22222);
       z-index: 9999;
-      animation: openCurtain 3s ease forwards, fadeOut 1s 3s forwards;
+      animation: openCurtain 3s ease forwards;
     }
     .curtain-left {
       left: 0;
-      animation-delay: 0s;
+      transform-origin: left;
     }
     .curtain-right {
       right: 0;
-      animation-delay: 0s;
+      transform-origin: right;
     }
     @keyframes openCurtain {
       from {
-        transform: translateX(0);
+        transform: scaleX(1);
       }
       to {
-        transform: translateX(-100%);
-      }
-    }
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
+        transform: scaleX(0);
       }
     }
     /* Flower styles */
@@ -108,7 +95,7 @@
       position: absolute;
       font-size: 2rem;
       animation: float 6s infinite ease-in-out;
-      z-index: 1;
+      z-index: 1; /* Ensure flowers are behind the text */
     }
     @keyframes float {
       0%, 100% {
@@ -162,7 +149,7 @@
     function createFlower(emoji, count) {
       for (let i = 0; i < count; i++) {
         const flower = document.createElement('div');
-        flower.className = `flower-container ${emoji === '🌹' ? 'rose' : 'flower'}`;
+        flower.className = flower-container ${emoji === '🌹' ? 'rose' : 'flower'};
         flower.style.left = Math.random() * 100 + '%';
         flower.style.top = Math.random() * 100 + '%';
         flower.style.animationDelay = Math.random() * 2 + 's';
